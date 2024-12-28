@@ -141,3 +141,103 @@ For use of static files we use this middleware --:  app.use(express.static("publ
 
 
 # MongoDB
+Where data stored in organized way for faster CRUD operation.
+1. Download Server.
+2. Download Compass.
+3. npm i mongoose.
+4. Make folder named module.
+
+a. Schemas --: Different types of data stored at different places.
+b. Code --:
+const mongoose = require('mongoose');
+const { type } = require('os');
+
+
+
+const userSchema = new mongoose.Schema({
+    username : String,
+    email : String,
+    password : String,
+    age : Number,
+    gender : {
+        type : String,
+        enum : [ 'male', 'female', 'other' ]
+    }
+});
+
+//Importing the schema to the model
+const userModel = mongoose.model('user', userSchema);
+
+//Exporting the model
+module.exports = userModel;
+
+# Connection to Database
+1. Make a folder named config.
+2. Make db.js file in it
+3. Code :--
+const mongoose = require("mongoose");
+
+const connection = mongoose.connect("mongodb://0.0.0.0/node").then(() => {
+  console.log("Connected to the database");
+});
+
+module.exports = connection;
+
+
+# Saving Data in the database
+1. Get data from the frontend.
+app.get("/register", (req, res) => {
+  res.render("register");
+}); // register contains normal form data
+2. Send data to the server.
+app.post("/register", async (req, res) => {
+
+  const { username, email, password} = req.body;
+  
+  const newUser = await userModel.create({
+    username,
+    email,
+    password
+  });
+  res.send(newUser);
+});
+
+# CRUD operation
+C - Create (already done)
+
+R - Read {
+  Code --: //find and findOne methods
+  app.get("/get-users", (req, res) => {
+  userModel.find().then((users) => {
+    res.send(users);
+  });
+});
+}
+
+U - Update {
+Code --: 
+app.get("/update-user", async (req, res) => {
+  await userModel
+    .findOneAndUpdate(
+      {
+        username: "b",
+      },
+      {
+        email: "c@c.com",
+      }
+    )
+    .then((user) => {
+      res.send(user);
+    });
+});
+}
+
+D - Delete {
+Code --:
+app.get("/delete-user", async (req, res) => {
+  await userModel.findOneAndDelete({
+    username: "b",
+  })
+  res.send("User deleted");
+})
+}
