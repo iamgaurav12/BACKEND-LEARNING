@@ -3,3 +3,13 @@
 
 # JWT Token
 It is used for authentication
+
+
+# Flowbite
+It gives previously designed components that are going to be use in development of the frontend. It use tailwind CSS
+
+
+# express validator
+This validates the data that it is true of not.
+Install - npm i express-validator
+Code --: 
