@@ -1,0 +1,17 @@
+{
+  "name": "drive",
+  "version": "1.0.0",
+  "description": "1. Just find a way to store projects in the github\r 2. Video for this project --: https://youtu.be/Q-icS7yZz5k?si=qujnuMuqvf9Io_Ww&t=7004",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}
