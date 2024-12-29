@@ -60,3 +60,13 @@ res.send("Logged in successfully");
 Why we save token in the cookie? 
 Ans --: When browers sends request, it also sends cookie with that particular request.
 
+# Firebase
+We use firebase for saving file , we also see how to use firebase.
+It is paid.
+
+
+# Firebase-admin
+It helps to connect express to the firebase.
+
+
+
